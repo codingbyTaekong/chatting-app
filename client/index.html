@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.socket.io/4.4.0/socket.io.min.js"
+        integrity="sha384-1fOn6VtTq3PWwfsOrk45LnYcGosJwzMHv+Xh/Jx5303FVOXzEnw0EpLv30mtjmlj"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/6c8fcbf7dd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./public/css/chat.css">
+</head>
+
+<body>
+    <div class="rendingWrap">
+        <div class="rending-container">
+            <div class="logo">
+                <img src="./public/img/logo.png" alt="logo" srcset="">
+            </div>
+            <h1 class="WelcomeTitle">
+                시흥시청 웹 메타버스 플랫폼
+            </h1>
+            <div class="nicknameWrap">
+                <input type="text" name="nickname" id="nickname" placeholder="닉네임">
+                <button class="Enter">입장하기</button>
+            </div>
+        </div>
+    </div>
+    <div class="loadWrap">
+        <div class="Progress">
+            <div class="bar">
+                <div class="percentTxt">
+                    <div class="triangle"></div>
+                    <span>2%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="chatting-icon">
+        <i class="far fa-comments"></i>
+    </div>
+    <div class="chat-container close">
+        <div class="emoji">
+            <div class="toggle_emoji">
+                <i class="fal fa-smile-plus"></i>
+            </div>
+            <div class="emojiContainer">
+                <span class="emojiname_01">이모지1</span>
+                <span class="emojiname_02">이모지2</span>
+                <span class="emojiname_03">이모지3</span>
+            </div>
+        </div>
+        <ul>
+        </ul>
+        <div class="inputWrap">
+            <input type="text" name="message" id="message" placeholder="메세지를 입력해주세요.">
+        </div>
+    </div>
+    <div class="navigate">
+    </div>
+    <div class="map">
+        <img src="./public/img/map.png" alt="" srcset="">
+        <span class="worldtxt">월드맵</span>
+    </div>
+</body>
+<script>
+    const progress = (percent) => {
+        let per = String(Number(percent) + Math.floor(Math.random() * 10));
+        if (Number(percent) < 90) {
+            document.querySelector('.Progress .bar').style.width = `${per}%`
+            document.querySelector('.percentTxt span').textContent = `${per}%`
+            setTimeout(() => {
+                progress(per);
+            }, 300)
+        } else {
+            document.querySelector('.Progress .bar').style.width = `100%`;
+            document.querySelector('.Progress .bar').style.borderRadius = '20px';
+            document.querySelector('.percentTxt span').textContent = `100%`;
+            setTimeout(() => {
+                document.querySelector('.loadWrap').remove();
+                document.querySelector('.nicknameWrap').classList.add('opened');
+            }, 500)
+            return false;
+        }
+    }
+    window.addEventListener('load', function () {
+        let percent = document.querySelector('.percentTxt span').textContent[0];
+        progress(percent)
+    })
+
+    document.querySelector('.Enter').addEventListener('click', function () {
+        const nickname = document.querySelector('input[name="nickname"]').value;
+        if (!nickname) {
+            return alert("닉네임을 입력해주세요.")
+        } else {
+            socket.emit('ENTER_USER', { nickname: nickname })
+            document.querySelector('.rendingWrap').remove()
+        }
+    })
+
+
+    document.querySelector('.toggle_emoji').addEventListener('click',function(){
+        document.querySelector('.emojiContainer').classList.toggle('open')
+    })
+
+    document.querySelector('.chatting-icon').addEventListener('click',function(){
+        document.querySelector('.chat-container').classList.toggle('close')
+    })
+    const socket = io("http://localhost:5000", { transports: ['websocket'] });
+    socket.on("connect", () => {
+        console.log(socket.connected); // true
+    });
+    socket.on('WELCOME_MESSAGE', (data) => {
+        const msg = document.createElement('li');
+        msg.textContent = data.msg;
+        document.querySelector('.chat-container ul').appendChild(msg)
+    })
+    socket.on('NEW_USER', (data) => {
+        const msg = document.createElement('li');
+        msg.style.color = 'rgb(0, 190, 255)';
+        msg.textContent = data.msg;
+        document.querySelector('.chat-container ul').appendChild(msg)
+    })
+    socket.on('OUT_USER', (data) => {
+        const msg = document.createElement('li');
+        msg.style.color = '#d72f0e';
+        msg.textContent = data.msg;
+        document.querySelector('.chat-container ul').appendChild(msg)
+    })
+    socket.on('NEW_MSG', (data) => {
+        const msg = document.createElement('li');
+        msg.style.color = '#fff';
+        msg.textContent = `${data.nickname} : ${data.msg}`;
+        document.querySelector('.chat-container ul').appendChild(msg)
+    })
+    
+    document.querySelector('input[name="message"]').addEventListener('keyup', function (e) {
+        if (e.keyCode === 13 && this.value !== "") {
+            socket.emit('MSG', {msg: this.value})
+            this.value = "";
+            document.querySelector('.chat-container ul').scrollTop = document.querySelector('.chat-container ul').scrollTop + document.querySelector('.chat-container ul').getBoundingClientRect().height + 120;
+        }
+    })
+</script>
+
+</html>

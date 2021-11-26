@@ -1,0 +1,19 @@
+{
+  "name": "cattingapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "install": "^0.13.0",
+    "nodemon": "^2.0.15",
+    "npm": "^8.1.4",
+    "socket.io": "^4.4.0"
+  }
+}
