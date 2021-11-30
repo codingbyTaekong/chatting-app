@@ -19,9 +19,6 @@
             <div class="logo">
                 <img src="./public/img/logo.png" alt="logo" srcset="">
             </div>
-            <h1 class="WelcomeTitle">
-                시흥시청 웹 메타버스 플랫폼
-            </h1>
             <div class="nicknameWrap">
                 <input type="text" name="nickname" id="nickname" placeholder="닉네임">
                 <button class="Enter">입장하기</button>
@@ -73,7 +70,7 @@
             document.querySelector('.percentTxt span').textContent = `${per}%`
             setTimeout(() => {
                 progress(per);
-            }, 300)
+            }, 100)
         } else {
             document.querySelector('.Progress .bar').style.width = `100%`;
             document.querySelector('.Progress .bar').style.borderRadius = '20px';

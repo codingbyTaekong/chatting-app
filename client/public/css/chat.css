@@ -29,7 +29,7 @@ li {
 
 /* 랜딩 */
 .rendingWrap {
-    background-image: url("../img/rending.png");
+    background-image: url("../img/rending_W.png");
     background-position: center;
     background-size: cover;
     width: 100%;
@@ -44,34 +44,31 @@ li {
     width: 80%;
     height: 80%;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .logo {
-    width: 200px;
+    width: 460px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 18%;
 }
 
 .logo img {
     width: 100%;
 }
 
-.WelcomeTitle {
-    font-family: 'GmarketSansBold';
-    text-shadow: rgb(0 0 0) 2px 2px 6px;
-    color: #fff;
-    font-size: 72px;
-    margin: 25px 0;
-}
-
 .nicknameWrap {
     display: flex;
     flex-direction: column;
-    width: 250px;
+    width: 603px;
     margin-top: 100px;
     display: none;
     opacity: 0;
+    align-items: center;
 }
 
 .nicknameWrap.opened {
@@ -108,7 +105,7 @@ li {
 }
 
 .Enter {
-    width: 100%;
+    width: 200px;
     height: 50px;
     border-radius: 20px;
     border: 0;
@@ -117,11 +114,12 @@ li {
     justify-content: center;
     margin: 20px 0;
     box-shadow: 0 1px 10px 1px rgb(0 0 0 / 15%);
-    font-family: 'GmarketSansBold';
-    color: #003780;
-    font-size: 20px;
+    font-family: 'GmarketSansMedium';
+    color: #fff;
+    font-size: 16px;
     cursor: pointer;
     transition: all 0.5s;
+    background-color: #68d9fc;
 }
 
 .Enter:hover {
@@ -137,13 +135,14 @@ li {
     height: fit-content;
     position: absolute;
     z-index: 11;
-    top: 50%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
 
 .Progress {
-    width: 100%;
+    width: 70%;
+    margin: 0 auto;
     height: 20px;
     border-radius: 20px;
     background-color: rgb(200, 211, 219);
@@ -380,6 +379,9 @@ li {
     .WelcomeTitle {
        font-size: 55px;
     }
+    .rendingWrap {
+        background-image: url("../img/rending_T.png");
+    }
 }
 
 /* ipad 가로 */
@@ -395,6 +397,9 @@ li {
 }
 
 @media screen and (max-width:500px) {
+    .rendingWrap {
+        background-image: url("../img/rending_M.png");
+    }
     .chat-container {
         width: 90%;
     }
@@ -406,7 +411,7 @@ li {
         padding: 2px 0;
     }
     .logo {
-        width: 130px;
+        width: 68%;
     }
     .rending-container {
         width: 90%;
@@ -416,6 +421,7 @@ li {
         letter-spacing: -2.6px;
     }
     .nicknameWrap {
+        width: 85%;
         margin: 0 auto;
         margin-top: 100px;
     }

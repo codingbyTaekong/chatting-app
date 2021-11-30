@@ -1,0 +1,274 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+li {
+    list-style: none;
+}
+
+.npcbox {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.24);
+    justify-content: center;
+}
+
+.detail_img {
+    width: 40%;
+    max-width: 787px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 7%;
+}
+
+.detail_img img {
+    width: 100%;
+}
+.detail_img iframe {
+    width: 100%;
+    height: 400px;
+    border: none;
+}
+.speech_bubble {
+    width: 1420px;
+    height: 376px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: -8%;
+    background-repeat: no-repeat;
+    background-image: url("../img/bubble.png");
+    background-size: contain;
+    background-position: bottom;
+    padding: 6.5% 7%;
+}
+
+.speech_bubble .npcimg {
+    position: absolute;
+    width: 384px;
+    height: 370px;
+    right: 5%;
+    top: -70%;
+}
+
+.speech_bubble .npc_txt {
+    width: 100%;
+    font-family: 'GmarketSansMedium';
+    color: #343434;
+    font-size: 22px;
+}
+
+.speech_bubble .npc_txt .color {
+    font-family: 'GmarketSansBold';
+    color: #227cc6;
+}
+.btn_wrap {
+    width: 100%;
+    position: relative;
+    bottom: -6%;
+    display: flex;
+}
+.btn_wrap .continue {
+    width: 99px;
+    height: 45px;
+    background-color: #68d9fc;
+    border: 0;
+    font-family: 'GmarketSansMedium';
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: 15px;
+    cursor: pointer;
+}
+.btn_wrap .continue:hover {
+    background-color: #21bae9;
+}
+
+.btn_wrap .cansel {
+    width: 99px;
+    height: 45px;
+    background-color: #6d6d6d;
+    border: 0;
+    font-family: 'GmarketSansMedium';
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn_wrap .cansel:hover {
+    background-color: #555555;
+}
+.btn_wrap .showVod, .btn_wrap .outlink {
+    padding: 0 12px;
+    background-color: #68d9fc;
+    border: 0;
+    font-family: 'GmarketSansMedium';
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 15px;
+    text-decoration: none;
+    height: 45px;
+}
+.btn_wrap .showVod:first-of-type {
+    margin-left: auto;
+}
+.btn_wrap .showVod:hover, .btn_wrap .outlink {
+    background-color: #21bae9;
+}
+
+/* ipad pro 가로 */
+@media (orientation: landscape) and (max-width:1366px) {
+    .speech_bubble {
+        width: 1280px;
+        height: 329px;
+        top: -6%;
+    }
+    .detail_img {
+        width: 60%;
+    }
+    .speech_bubble .npcimg {
+        top: -79%;
+    }
+    .detail_img iframe {
+        height: 460px;
+    }
+
+}
+/* ipad pro 세로 */
+@media (orientation: portrait)and (max-width:1024px) {
+    .npcbox {
+        justify-content: flex-end;
+    }
+    .speech_bubble {
+        background-image: url("../img/bubble_T.png");
+        width: 90%;
+        height: 680px;
+        top: -2%;
+    }
+    .detail_img {
+        width: 80%;
+        margin-bottom: 2%;
+    }
+    .speech_bubble .npcimg {
+        width: 280px;
+        height: 270px;
+        right: 3%;
+        top: -20%;
+    }
+    .btn_wrap {
+        margin-top: 50px;
+    }
+}
+
+/* ipad 가로 */
+@media (orientation: landscape) and (max-width:1024px) {
+    .speech_bubble {
+        width: 1000px;
+        height: 265px;
+    }
+    .speech_bubble .npcimg {
+        width: 280px;
+        height: 270px;
+    }
+    .speech_bubble .npc_txt {
+        font-size: 16px;
+    }
+    .detail_img iframe {
+        height: 360px;
+    }
+    .speech_bubble .npcimg {
+        top: -69%;
+    }
+    .speech_bubble .npc_txt {
+        margin-top: 8px;
+    }
+}
+@media (orientation: portrait)and (max-width:768px) {
+    .speech_bubble {
+        width: 100%;
+    }
+    .btn_wrap {
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn_wrap .showVod:first-of-type {
+        margin-left: 0;
+    }
+    .btn_wrap .showVod, .btn_wrap .outlink {
+        margin-bottom: 15px;
+    }
+    .btn_wrap .showVod, .btn_wrap .outlink {
+        padding: 0 25px;
+    }
+    .speech_bubble .npcimg {
+        width: 200px;
+        height: 193px;
+        top: -20%;
+    }
+    .btn_wrap .continue {
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .speech_bubble {
+        background-image: url("../img/bubble_M.png");
+        height: 60%;
+        padding: 6.5% 10%;
+    }
+    .speech_bubble .npc_txt {
+        font-size: 16px;
+    }
+    .speech_bubble .npcimg {
+        width: 110px;
+        height: 106px;
+        top: -8%;
+    }
+    .detail_img {
+        width: 90%;
+    }
+    .detail_img iframe {
+        height: 190px;
+    }
+}
