@@ -368,6 +368,48 @@ li {
     display: none;
 }
 
+/* 캐릭터 선택 */
+.selectingWrap {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    bottom: 25%;
+    transform: translate(-50%,-50%);
+}
+
+.leftArrow, .rightArrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.leftArrow:hover, .rightArrow:hover {
+    transform: scale(0.95);
+}
+
+.leftArrow img, .rightArrow img {
+    width: 100%;
+}
+
+.selectingWrap .select {
+    background-color: #68d9fc;
+    border: 0;
+    font-family: 'GmarketSansMedium';
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0 36px;
+    height: 45px;
+    margin: 0 20px;
+}
+
 /* ipad pro 가로 */
 @media (orientation: landscape) and (max-width:1366px) {
 }
@@ -393,6 +435,16 @@ li {
 @media (orientation: portrait)and (max-width:768px) {
     .WelcomeTitle {
         font-size: 45px;
+    }
+}
+
+@media (orientation: landscape) and (max-width:717px) {
+    .leftArrow, .rightArrow {
+        width: 45px;
+        height: 45px;
+    }
+    .map {
+        width: 120px;
     }
 }
 
@@ -451,6 +503,10 @@ li {
         left: 15px;
         transform: none;
         box-shadow: 0 4px 10px 2px rgb(0 0 0 / 40%);
+        background-image: url("../img/map.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
     }
     .map:hover {
         transform:none;
@@ -466,5 +522,16 @@ li {
         color: #fff;
         text-shadow: rgb(0 0 0) 1px 1px 4px;
         font-family: 'GmarketSansMedium';
+    }
+    .leftArrow, .rightArrow {
+        width: 45px;
+        height: 45px;
+    }
+    .selectingWrap .select {
+        width: 120px;
+        padding: 0;
+    }
+    .map img {
+        display: none;
     }
 }

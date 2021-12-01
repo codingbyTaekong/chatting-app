@@ -251,6 +251,38 @@ li {
     }
 }
 
+/* 갤럭시 폴드 */
+@media (orientation: landscape) and (max-width:717px) {
+    .speech_bubble {
+        width: 100%;
+        min-height: 300px;
+        padding: 9% 4%;
+        top: -5%;
+        background-image: url("../img/bubble_F.png");
+    }
+    .speech_bubble .npcimg {
+        width: 160px;
+        height: 154px;
+        top: -28%;
+    }
+    .btn_wrap .continue, .btn_wrap .cansel {
+        font-size: 12px;
+        height: 35px;
+    }
+    .speech_bubble .npc_txt {
+        font-size: 13px;
+    }
+    .detail_img iframe {
+        width: 80%;
+        height: 200px;
+    }
+    .btn_wrap .showVod {
+        letter-spacing: -1.2px;
+        font-size: 12px;
+        height: 35px;
+    }
+}
+
 @media screen and (max-width:500px) {
     .speech_bubble {
         background-image: url("../img/bubble_M.png");
@@ -270,5 +302,38 @@ li {
     }
     .detail_img iframe {
         height: 190px;
+    }
+    .btn_wrap .outlink {
+        margin-right: 0;
+        font-size: 14px;
+    }
+    .btn_wrap {
+        margin-top: 15px;
+    }
+}
+@media screen and (max-width:280px) {
+    .speech_bubble .npc_txt {
+        font-size: 14px;
+        line-height: 1.2;
+    }
+    .btn_wrap {
+        margin-top: 5px;
+    }
+    .btn_wrap .showVod, .btn_wrap .outlink {
+        font-size: 12px;
+        height: 35px;
+    }
+    .btn_wrap .showVod {
+        letter-spacing: -1.2px;
+    }
+    .btn_wrap .cansel,.btn_wrap .continue {
+        font-size: 12px;
+        height: 35px;
+    }
+    .speech_bubble {
+        height: 55%;
+    }
+    .speech_bubble .npcimg {
+        top: -15%;
     }
 }
