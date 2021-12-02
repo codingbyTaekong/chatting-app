@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Document</title>
     <script src="https://cdn.socket.io/4.4.0/socket.io.min.js"
         integrity="sha384-1fOn6VtTq3PWwfsOrk45LnYcGosJwzMHv+Xh/Jx5303FVOXzEnw0EpLv30mtjmlj"
@@ -52,6 +52,7 @@
         <ul>
         </ul>
         <div class="inputWrap">
+            <div class="send">전송</div>
             <input type="text" name="message" id="message" placeholder="메세지를 입력해주세요.">
         </div>
     </div>
@@ -148,6 +149,13 @@
             this.value = "";
             document.querySelector('.chat-container ul').scrollTop = document.querySelector('.chat-container ul').scrollTop + document.querySelector('.chat-container ul').getBoundingClientRect().height + 120;
         }
+    })
+    document.querySelector('.send').addEventListener('click',function(){
+        if (document.querySelector('input[name="message"]').value !== "") {
+            socket.emit('MSG', {msg: document.querySelector('input[name="message"]').value})
+            document.querySelector('input[name="message"]').value = "";
+            document.querySelector('.chat-container ul').scrollTop = document.querySelector('.chat-container ul').scrollTop + document.querySelector('.chat-container ul').getBoundingClientRect().height + 120;
+        }        
     })
 </script>
 

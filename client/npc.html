@@ -14,6 +14,7 @@
                 spot : "갯골생태공원",
                 img : ["1-1", "1-2", "1-3"],
                 npc : ["npc1", "npc2", "npc3", "npc4"],
+                voice : ["1-1","1-2","1-3"],
                 txt : 
                 [
                     "갯골생태공원은 <span class='color'>150만평의 대규모 옛 염전 부지</span>에 형성된 <span class='color'>경기도 유일의 내만 갯골 습지</span>로 옛 염전의 정취를 느낄 수 있는 아름다운 곳이에요!",
@@ -37,6 +38,7 @@
                 spot : "선사유적공원",
                 img : ["2-1", "2-2", "2-3","2-4"],
                 npc : ["npc1", "npc2", "npc3", "npc4", "npc5"],
+                voice : ["2-1","2-2","2-3", "2-4"],
                 txt : 
                 [
                     "오이도 유적은 우리나라 중부 서해안 지역의 <span class='color'>대표적인 패총(조개무덤)</span>으로서, 우리나라 선사시대 해안 생활상과 문화를 연구하는데 <span class='color'>귀중한 자료</span>로 활용되고 있어요. ",
@@ -61,6 +63,7 @@
                 spot : "오이도박물관",
                 img : ["3-1", "3-2", "3-3"],
                 npc : ["npc1", "npc2", "npc3", "npc4"],
+                voice : ["3-1","3-2","3-3", "3-4"],
                 txt : 
                 [
                     "2019년 7월에 개관한 시흥오이도박물관은 오이도 유적(국가지정문화재 사적 제441호)에 위치하고 있어요.",
@@ -84,6 +87,7 @@
                 spot : "오이도빨간등대꿈상회",
                 img : ["4-1", "4-2", "4-3"],
                 npc : ["npc1", "npc2", "npc3", "npc4"],
+                voice : ["4-1","4-2","4-3", "4-4"],
                 txt : 
                 [
                     "오이도는 원래 섬이었으나 매립이 되어 육지와 이어지게 된 지역으로<span class='color'> 갯벌을 메워 해양단지</span>를 조성했어요. 오이도 해양단지는 횟집과 조개구이집 등 맛집이 즐비하게 위치하여 있으며 사시사철 시민들에게 <span class='color'>즐거움을 선사하는 곳</span>이에요.",
@@ -95,6 +99,7 @@
                 spot : "물왕저수지",
                 img : ["5-1", "5-2"],
                 npc : ["npc1", "npc2", "npc3"],
+                voice : ["5-1","5-2"],
                 txt : 
                 [
                     "시흥 최대의 <span class='color'>담수호</span>이자 대표 휴식처 물왕저수지예요. 물왕저수지의 다른 이름은 흥부저수지로 저수지를 설치할 당시 저수지의 행정구역이 시흥군과 부천군이었기 때문에 <span class='color'>시흥의 ‘흥’자와 부천군의 ‘부’자</span>를 취했다고 해요.",
@@ -111,6 +116,8 @@
                 }
             })[0]
             // npc박스
+            const {spot, img, npc, txt, vod, voice} = targetSpot;
+
             const npcbox = document.createElement('div');
             npcbox.dataset.idx = 0
             npcbox.classList.add('npcbox');
@@ -118,17 +125,17 @@
             const detail_img = document.createElement('div');
             detail_img.classList.add('detail_img');
             const detail_innerImg = document.createElement('img');
-            detail_innerImg.src = `./public/img/scene/${targetSpot.img[0]}.png`;
+            detail_innerImg.src = `./public/img/scene/${img[0]}.png`;
             detail_img.appendChild(detail_innerImg)
             // 말풍선
             const speech_bubble = document.createElement('div');
             speech_bubble.classList.add('speech_bubble');
             const npcimg = document.createElement('img');
             npcimg.classList.add('npcimg');
-            npcimg.src = `./public/img/${targetSpot.npc[0]}.png`
+            npcimg.src = `./public/img/${npc[0]}.png`
             const npc_txt = document.createElement('p');
             npc_txt.classList.add('npc_txt');
-            npc_txt.innerHTML = targetSpot.txt[0];
+            npc_txt.innerHTML = txt[0];
             //버튼
             const btn_wrap = document.createElement('div');
             btn_wrap.classList.add('btn_wrap');
@@ -146,15 +153,19 @@
             npcbox.appendChild(detail_img)
             npcbox.appendChild(speech_bubble)
             document.querySelector('body').appendChild(npcbox);
+            let npcVoice = new Audio(`./public/voice/${voice[0]}.mp3`);
+            npcVoice.play()
             continueButtom.addEventListener('click',()=> {
                 handleContinueButtom(npcbox.dataset.idx)
             })
             canselButtom.addEventListener('click',()=>{
                 npcbox.remove()
+                npcVoice.volume = 0;
+                npcVoice.pause();
+                npcVoice = null;
             })
             function handleContinueButtom(currentIndex) {
                 const index = Number(currentIndex);
-                const {spot, img, npc, txt, vod} = targetSpot;
                 // nextindex
                 if (index + 1 === targetSpot.txt.length - 1) {
                     if (vod) {
@@ -208,6 +219,11 @@
                         npcimg.src = `./public/img/${targetSpot.npc[index+1]}.png`
                         npc_txt.innerHTML = targetSpot.txt[index+1];
                         npcbox.dataset.idx = index + 1;
+                        npcVoice.volume = 0;
+                        npcVoice.pause();
+                        npcVoice = new Audio(`./public/voice/${voice[index+1]}.mp3`);
+                        npcVoice.play()
+
                     }
                 }
             }
